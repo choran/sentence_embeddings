@@ -18,10 +18,10 @@ args = parser.parse_args()
 
 # Import the Universal Sentence Encoder's TF Hub module
 module_url = "https://tfhub.dev/google/universal-sentence-encoder-large/3"
-embed = hub.Module(module_url, trainable=False)
+embed = hub.Module(module_url)
 
 # Set the relative paths
-use_path = "/home/ec2-user/dissertation/encoding/sentence_embedding/vizualizations/"
+use_path = "dataset/"
 quora_file = "quora_questions.csv"
 
 # Use a TF placeholder
@@ -49,7 +49,7 @@ def get_scores(session, questions):
         [sts_encode1, sts_encode2, sim_scores],
         feed_dict={
             sts_input1: questions['new_query'].tolist(),
-            sts_input2: questions['question2'].tolist()
+            sts_input2: questions['question1'].tolist()
         })
     return (emba, embb, scores)
 
