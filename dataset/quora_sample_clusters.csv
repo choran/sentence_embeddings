@@ -1,0 +1,51 @@
+query,answer_group
+I forgot my username and have no access to my recovery phone number. How can I re-access my account?,Missing Password
+I made an account on my phone but I forgot the password. What should I do to recover my password?,Missing Password
+What are the steps for a password reset?,Missing Password
+How do I recover my password when I'm not receiving any recovery email?,Missing Password
+"If the ""retrieve password"" process for my account is not working, what steps can I take to get it?",Missing Password
+Is there a way to insert multiple images?,Profile Image
+How do I add an image?,Profile Image
+Can I change my profile image?,Profile Image
+Can I upload a image for users?,Profile Image
+Whats the max size for a profile image?,Profile Image
+How can I signup online without a credit card?,Credit Card Setup
+Can I signup without a credit card?,Credit Card Setup
+Do I need a credit card to start a trial?,Credit Card Setup
+Do I need a credit cart to setup an account?,Credit Card Setup
+Do you have a free version?,Credit Card Setup
+What are some good photo editing apps?,Video Steps
+Which is best free video editing software?,Video Steps
+How can I edits videos?,Video Steps
+Can I update my videos before uploading,Video Steps
+Are there online tools I can use to share my video,Video Steps
+How can I upload Folders which contains daily report excel files daily to my using a python script?,Python Upload Steps
+Can I upload data with a python script?,Python Upload Steps
+How do I upload a lot of data with a python script?,Python Upload Steps
+Are there examples of python scripts to upload data?,Python Upload Steps
+Can i setup a regular upload with a python scrip?,Python Upload Steps
+How can I search for pending issues that have not been solved yet?,Search for Issues
+How can I seach for open issues?,Search for Issues
+How can I find open issues?,Search for Issues
+Where can i see a list of open and closed issues?,Search for Issues
+Can I search by newest issues?,Search for Issues
+Is there any way to query the metadata?,Query Metadata
+How can I get the metatdata for a query?,Query Metadata
+Is there metadata associated with a query?,Query Metadata
+Where is the metadata stored?,Query Metadata
+Can I search the metadata for a query?,Query Metadata
+How do I update my account?,Update Account
+Can I update my account?,Update Account
+Why do I need to update my account?,Update Account
+When do I need to update my account?,Update Account
+Where can I find out how to update my account?,Update Account
+How do you disable an account?,Account Delete
+How do you delete an account?,Account Delete
+Can I recover a deleted account?,Account Delete
+Do I lose all my data when I delete my account?,Account Delete
+Can I archive my account?,Account Delete
+How do I use API from your website?,API Info
+Is there an API available?,API Info
+Can I use an API?,API Info
+Where can I find info on your API?,API Info
+How do I setup my account to use an API?,API Info

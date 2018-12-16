@@ -22,7 +22,7 @@ embed = hub.Module(module_url)
 
 # Set the relative paths
 use_path = "dataset/"
-quora_file = "quora_questions.csv"
+quora_file = "quora_sample_clusters.csv"
 
 # Use a TF placeholder
 sts_input1 = tf.placeholder(tf.string, shape=(None))
@@ -49,7 +49,7 @@ def get_scores(session, questions):
         [sts_encode1, sts_encode2, sim_scores],
         feed_dict={
             sts_input1: questions['new_query'].tolist(),
-            sts_input2: questions['question1'].tolist()
+            sts_input2: questions['query'].tolist()
         })
     return (emba, embb, scores)
 
@@ -61,7 +61,7 @@ def get_parameters(df):
     else:
         # Select a random question from the list
         rand = random.randint(0, len(df)-1)
-        same_qs = [df.iloc[rand]['question1']] * len(df)        
+        same_qs = [df.iloc[rand]['query']] * len(df)        
     if (args.recommend) is not None:
         num = args.recommend
     else:
@@ -69,7 +69,7 @@ def get_parameters(df):
     return(same_qs, num)
 
 def bar_scores(rec_df):
-    objects = list(range(1, len(rec_df['question1'].tolist()) +1))
+    objects = list(range(1, len(rec_df['query'].tolist()) +1))
     y_pos = np.arange(len(objects))
     performance = rec_df['sim_score'].tolist()
     plt.figure(figsize=(15,10))
@@ -78,7 +78,7 @@ def bar_scores(rec_df):
     plt.ylabel(rec_df['new_query'].tolist()[0])
     plt.title('Top 5 Recommendations')
     loc = -0.1
-    for i,res in enumerate(rec_df['question1'].tolist()):
+    for i,res in enumerate(rec_df['query'].tolist()):
         plt.text(-0.7, loc, '{0}: {1}'.format(i+1, res), fontsize=15)
         loc-=0.1
     plt.savefig("similar_qs.png", bbox_inches = "tight")
@@ -87,7 +87,7 @@ def bar_scores(rec_df):
 def pca_transform(recs):
     # Convert the 512 dimensions into 2 so we can represent them in a graph
     pca = PCA(2)  # project from 512 to 2 dimensions
-    queries = recs['question1'].tolist()
+    queries = recs['query'].tolist()
     queries.append(recs['new_query'].tolist()[0])
     
     embeds1 = recs['emba'].tolist()
@@ -119,13 +119,13 @@ with tf.Session() as session:
     # Get the similarity score
     emba, embb, scores = get_scores(session, qs_df)
     # Add the similarity scores to the DF
-    qs_df['sim_score'] = scores
+    qs_df['sim_score'] =  scores
     # Add the embeddings to the DF
     qs_df['emba'] = np.array(emba).tolist()
     qs_df['embb'] = np.array(embb).tolist()
     # Now sort them so we can get the top five closest matches
     sort_by_most_similar = qs_df.sort_values('sim_score', ascending=False)
     print(sort_by_most_similar.head(n=top_qs))
-    (sort_by_most_similar.head(n=top_qs)[['id', 'question1', 'question2', 'is_duplicate', 'new_query', 'sim_score']]).to_csv('recommend.csv')
+    (sort_by_most_similar.head(n=top_qs)[['new_query', 'query', 'answer_group', 'sim_score']]).to_csv('recommend.csv')
     pca_transform(sort_by_most_similar.head(n=top_qs))
     bar_scores(sort_by_most_similar.head(n=top_qs))
