@@ -126,6 +126,6 @@ with tf.Session() as session:
     # Now sort them so we can get the top five closest matches
     sort_by_most_similar = qs_df.sort_values('sim_score', ascending=False)
     print(sort_by_most_similar.head(n=top_qs))
-    (sort_by_most_similar.head(n=top_qs)[['new_query', 'query', 'answer_group', 'sim_score']]).to_csv('recommend.csv')
+    (sort_by_most_similar.head(n=top_qs)[['new_query', 'query', 'answer_group', 'sim_score']]).to_csv('recommend.csv', float_format='%.4f')
     pca_transform(sort_by_most_similar.head(n=top_qs))
     bar_scores(sort_by_most_similar.head(n=top_qs))
