@@ -30,6 +30,19 @@ It goes through each question and finds the best match for that question from th
 Code to visually compare sentence embedding pairs via scatter plot and bar chart
 ```
 
+## SaveEmbeddings.ipynb
+```
+Code that saves the embeddings for all our dataset in a pickle file.
+This is so you can easily and quickly do some testing with the sentence embeddings via: "TestSentences.ipynb"
+You do not need to run this notebook.
+```
+
+## TestSentences.ipynb
+```
+Use this notebook to test out the sentence embeddings. How good are they? Do the matches make sense?
+What about the scores? are they too high/low? You can just enter some test sentences here to get started
+```
+
 ### quora_recomend.py
 ```
 Code to find top five recommendation of similar sentences from quora test list.
