@@ -71,7 +71,7 @@ def get_parameters(df):
 def bar_scores(rec_df):
     objects = list(range(1, len(rec_df['query'].tolist()) +1))
     y_pos = np.arange(len(objects))
-    performance = rec_df['sim_score'].tolist()
+    performance = rec_df.index.values.tolist()
     plt.figure(figsize=(15,10))
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     plt.xticks(y_pos, objects)
@@ -125,7 +125,8 @@ with tf.Session() as session:
     qs_df['embb'] = np.array(embb).tolist()
     # Now sort them so we can get the top five closest matches
     sort_by_most_similar = qs_df.sort_values('sim_score', ascending=False)
-    print(sort_by_most_similar.head(n=top_qs))
-    (sort_by_most_similar.head(n=top_qs)[['new_query', 'query', 'answer_group', 'sim_score']]).to_csv('recommend.csv', float_format='%.4f')
+    print(sort_by_most_similar.round(4).head(n=top_qs))
+    sort_by_most_similar = sort_by_most_similar.set_index('sim_score')
+    (sort_by_most_similar.head(n=top_qs)[['new_query', 'query', 'answer_group']]).to_csv('recommend.csv', float_format='%.4f')
     pca_transform(sort_by_most_similar.head(n=top_qs))
     bar_scores(sort_by_most_similar.head(n=top_qs))
