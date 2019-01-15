@@ -1,5 +1,7 @@
 import tensorflow as tf
 import tensorflow_hub as hub
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -125,7 +127,8 @@ with tf.Session() as session:
     qs_df['embb'] = np.array(embb).tolist()
     # Now sort them so we can get the top five closest matches
     sort_by_most_similar = qs_df.sort_values('sim_score', ascending=False)
-    print(sort_by_most_similar.round(4).head(n=top_qs))
+    for i, s in enumerate(sort_by_most_similar.round(4).head(n=top_qs).iterrows()):
+        print('{:2}: {}'.format(i+1, s[1][0]))
     sort_by_most_similar = sort_by_most_similar.set_index('sim_score')
     (sort_by_most_similar.head(n=top_qs)[['new_query', 'query', 'answer_group']]).to_csv('recommend.csv', float_format='%.4f')
     pca_transform(sort_by_most_similar.head(n=top_qs))
